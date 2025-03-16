@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>My Website</title>
+    
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('background.gif') no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        padding-top: 50px; 
+    }
+
+
+    .nav-table {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Transparent black */
+        border-collapse: collapse;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+
+    .nav-table td a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-table td a:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+
+
+    <table class="nav-table">
+        <tr>
+            <td><a onclick="confirmNavigation('about.html')">About Me</a></td>
+            <td><a onclick="confirmNavigation('media.html')">Photos and Videos</a></td>
+	    <td><a onclick="confirmNavigation('browser.html')">Browser Outputs</a></td>
+            <td><a onclick="confirmNavigation('reflection.html')">Reflection</a></td>
+            <td><a onclick="confirmNavigation('contact.html')">Contact Me</a></td>
+            <td><a onclick="confirmNavigation('credits.html')">Credits</a></td>
+        </tr>
+    </table>
+
+
+    <script>
+        function confirmNavigation(url) {
+            let userChoice = confirm("Do you want to proceed to this page?");
+            if (userChoice) {
+                window.location.href = url;
+            }
+        }
+    </script>
+
+</body>
+</html>

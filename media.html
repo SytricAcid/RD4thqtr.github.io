@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Media Slideshow</title>
+    <style>
+        body {
+            font-family: "Pixelify Sans", sans-serif;
+            text-align: center;
+            background: url("mediabackground.gif") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        h1 {
+            font-size: 40px;
+            text-shadow: 3px 3px 5px blue;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+        }
+        .media {
+            width: 100%;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in {
+            opacity: 1 !important;
+        }
+        .description {
+            font-size: 18px;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 18px;
+            margin: 10px;
+            background-color: rgba(0, 0, 255, 0.7);
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px black;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 200, 0.9);
+            box-shadow: 2px 2px 0px black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Experiences</h1>
+    <div class="slideshow-container">
+        <img id="media" class="media fade-in" src="photo1.jpg" alt="Slideshow Media">
+        <video id="video" class="media fade-in" width="100%" controls style="display:none;"></video>
+        <div class="description" id="description">Zumba practice for MAPEH</div>
+    </div>
+    <button class="nav-button" onclick="prevMedia()">Previous</button>
+    <button class="nav-button" onclick="nextMedia()">Next</button>
+    <script>
+        let media = [
+            { type: "image", src: "photo1.jpg", text: "Zumba practice for MAPEH" },
+            { type: "image", src: "photo2.jpg", text: "My friends in LPSci at Kmart after a long day!" },
+            { type: "image", src: "photo3.jpg", text: "Art Fair in LPSci" },
+            { type: "image", src: "photo4.jpg", text: "Street Dance" },
+            { type: "image", src: "photo5.jpg", text: "Meeting de Avance" },
+            { type: "video", src: "video1.mp4", text: "School BOTB performance" },
+            { type: "video", src: "video2.mp4", text: "One act play - Fairness" },
+            { type: "video", src: "video3.mp4", text: "Our zumba dance by our group leader" }
+        ];
+        
+        let index = 0;
+        
+        function updateMedia() {
+            let imgElement = document.getElementById("media");
+            let videoElement = document.getElementById("video");
+            let textElement = document.getElementById("description");
+            
+            imgElement.classList.remove("fade-in");
+            videoElement.classList.remove("fade-in");
+            
+            setTimeout(() => {
+                if (media[index].type === "image") {
+                    imgElement.src = media[index].src;
+                    imgElement.style.display = "block";
+                    videoElement.style.display = "none";
+                } else {
+                    videoElement.src = media[index].src;
+                    videoElement.style.display = "block";
+                    imgElement.style.display = "none";
+                }
+                textElement.innerText = media[index].text;
+                imgElement.classList.add("fade-in");
+                videoElement.classList.add("fade-in");
+            }, 500);
+        }
+        
+        function nextMedia() {
+            index = (index + 1) % media.length;
+            updateMedia();
+        }
+        
+        function prevMedia() {
+            index = (index - 1 + media.length) % media.length;
+            updateMedia();
+        }
+    </script>
+</body>
+</html>
